@@ -1,0 +1,33 @@
+{
+  "name": "pque",
+  "version": "1.0.0",
+  "description": "Fast javascript library for priority queueu with variety of heap trees underneath",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BilalAlam173/pque.git"
+  },
+  "keywords": [
+    "priority",
+    "queue",
+    "heap",
+    "queue",
+    "fast",
+    "priority",
+    "queue",
+    "priority",
+    "queue",
+    "with",
+    "fibonacci",
+    "heap"
+  ],
+  "author": "Bilal Alam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BilalAlam173/pque/issues"
+  },
+  "homepage": "https://github.com/BilalAlam173/pque#readme"
+}
