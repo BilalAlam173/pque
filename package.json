@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run build && jest",
+    "test:watch": "npm run build && jest --watch",
+    "test:coverage": "npm run build && jest --collect-coverage",
     "build": "babel lib -d dist"
   },
   "repository": {
