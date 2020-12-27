@@ -5,7 +5,7 @@ test('should instantiate', () => {
     expect(pque).toBeTruthy();
 });
 
-test('should add values with integer and float keys', () => {
+xtest('should add values with integer and float keys', () => {
     const pque = new PriorityQueue();
     const inputs = ranArray(100, pque);
 
@@ -14,7 +14,7 @@ test('should add values with integer and float keys', () => {
 });
 
 
-test('should pop and rearrange correctly everytime', () => {
+xtest('should pop and rearrange correctly everytime', () => {
     const pque = new PriorityQueue();
     const inputs = ranArray(100, pque);
     inputs.sort((a, b) => a - b);
@@ -29,14 +29,14 @@ test('should pop and rearrange correctly everytime', () => {
     expect(pque.top).toEqual(inputs[0]);
 });
 
-test('should pop when only one element too', () => {
+xtest('should pop when only one element too', () => {
     const pque = new PriorityQueue();
     pque.add(1);
     expect(pque.pop()).toEqual(1);
     expect(pque.pop()).toBeFalsy();
 })
 
-test('should add very large amount of keys in 1 second', () => {
+xtest('should add very large amount of keys in 1 second', () => {
     const pque = new PriorityQueue();
     const t1 = Date.now();
     const inputs = ranArray(100000, pque);
@@ -47,6 +47,13 @@ test('should add very large amount of keys in 1 second', () => {
 
 
 });
+
+test('should build a heap from an array', () => {
+    const arr = [...Array(12)].map(x => Math.round(Math.random() * 10));
+    const pque = new PriorityQueue(arr);
+    console.log(pque.print());
+    expect(pque.print()).toEqual([1, 2, 3, 18, 11, 9, 7, 25]);
+})
 
 function ranArray(size, pque) {
     const inputs = [];
