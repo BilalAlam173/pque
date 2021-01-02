@@ -7,25 +7,24 @@ test("should instantiate", () => {
 
 test("should add values with integer and float keys", () => {
   const pque = new PriorityQueue();
-  const inputs = ranArray(100, pque);
+  const inputs = ranArrInsert(100, pque);
 
   expect(pque.top).toEqual(min(inputs));
   expect(pque.length).toEqual(100);
+  expect(validate(pque)).toBeTruthy();
 });
 
 test("should pop and rearrange correctly everytime", () => {
-  const pque = new PriorityQueue();
-  const inputs = ranArray(100, pque);
-  inputs.sort((a, b) => a - b);
-  expect(pque.top).toEqual(inputs[0]);
+  const pque = new PriorityQueue(ranArray(100));
+  expect(validate(pque)).toBeTruthy();
   pque.pop();
-  inputs.shift();
-  inputs.sort((a, b) => a - b);
-  expect(pque.top).toEqual(inputs[0]);
+  expect(validate(pque)).toBeTruthy();
   pque.pop();
-  inputs.shift();
-  inputs.sort((a, b) => a - b);
-  expect(pque.top).toEqual(inputs[0]);
+  expect(validate(pque)).toBeTruthy();
+  pque.pop();
+  pque.pop();
+  pque.pop();
+  expect(validate(pque)).toBeTruthy();
 });
 
 test("should pop when only one element too", () => {
@@ -38,10 +37,11 @@ test("should pop when only one element too", () => {
 test("should add very large amount of keys in 1 second", () => {
   const pque = new PriorityQueue();
   const t1 = Date.now();
-  const inputs = ranArray(100000, pque);
+  const inputs = ranArrInsert(100000, pque);
   const t2 = Date.now();
   expect(pque.top).toEqual(min(inputs));
   expect(pque.length).toEqual(100000);
+  expect(validate(pque)).toBeTruthy();
   expect((t2 - t1) / 1000).toBeLessThanOrEqual(1);
 });
 
@@ -58,7 +58,29 @@ test("should build a heap from an existing array", () => {
   expect(pque.toArray()).toEqual(pque2.toArray());
 });
 
-function ranArray(size, pque) {
+test("should merge two priority queues", () => {
+  const pque1 = new PriorityQueue(ranArray(10));
+  const pque2 = new PriorityQueue(ranArray(20));
+  pque1.merge(pque2, {mutate: true});
+  const pque3 = pque2.merge(pque1);
+  expect(validate(pque1)).toBeTruthy();
+  expect(validate(pque3)).toBeTruthy();
+  expect(pque1.length).toEqual(30);
+  expect(pque3.length).toEqual(50);
+
+});
+
+/**
+ *
+ * --- UTILITY FUNCTIONS-----
+ *
+ */
+
+function ranArray(size) {
+  return Array.from({ length: size }, () => Math.floor(Math.random() * size));
+}
+
+function ranArrInsert(size, pque) {
   const inputs = [];
   for (let i = 0; i < size; i++) {
     const val = Math.random() * 100;
@@ -74,4 +96,21 @@ function ranArray(size, pque) {
 
 function min(arr) {
   return Math.min.apply(null, arr);
+}
+
+function validate(pque, isMax = false) {
+  let isValid = true;
+  const arr = pque.toArray();
+  for (let i = 0; i < arr.length; i++) {
+    const left =
+      arr[2 * i + 1] ||
+      (isMax ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY);
+    const right =
+      arr[2 * i + 2] ||
+      (isMax ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY);
+    isValid = isMax
+      ? arr[i] >= left && arr[i] >= right
+      : arr[i] <= left && arr[i] <= right;
+  }
+  return isValid;
 }
