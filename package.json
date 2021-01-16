@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/BilalAlam173/pque.git"
   },
-  "files":[
+  "files": [
     "bin/**"
   ],
   "keywords": [
