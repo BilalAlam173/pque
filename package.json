@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "Fast javascript library for priority queueu with variety of heap trees underneath",
   "main": "bin/index.cjs",
-  "module": "bin/index.ejs",
+  "module": "bin/index.mjs",
   "scripts": {
     "test": "npm run compile && jest",
     "test:watch": "npm run compile && jest --watch",
