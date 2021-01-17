@@ -6,7 +6,7 @@ export default {
       format: "cjs",
     },
     {
-      file: "bin/index.ejs",
+      file: "bin/index.mjs",
       format: "es",
     },
   ],
