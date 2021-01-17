@@ -1,6 +1,6 @@
 {
   "name": "pque",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fast javascript library for priority queueu with variety of heap trees underneath",
   "main": "bin/index.cjs",
   "module": "bin/index.ejs",
@@ -11,7 +11,7 @@
     "compile": "babel lib -d dist",
     "prebuild": "npm run compile",
     "build": "rollup --config rollup.config.js",
-    "publish": "git push --tags && npm publish"
+    "prepublish": "npm run build && git push --tags"
   },
   "repository": {
     "type": "git",
