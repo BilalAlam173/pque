@@ -10,7 +10,7 @@
     "test:coverage": "npm run compile && jest --collect-coverage",
     "compile": "babel lib -d dist",
     "prebuild": "npm run compile",
-    "build": "rollup --config rollup.config.js",
+    "build": "rollup -c",
     "prepublish": "npm run build && git push --tags"
   },
   "repository": {

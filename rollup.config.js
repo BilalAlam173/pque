@@ -2,12 +2,12 @@ export default {
   input: "dist/priorityQueue",
   output: [
     {
-      file: "bin/index.cjs",
+      dir: "bin/common",
       format: "cjs",
     },
     {
-      file: "bin/index.mjs",
-      format: "es",
+      dir: "bin/esm",
+      format: "esm",
     },
   ],
 };
